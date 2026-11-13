@@ -37,12 +37,10 @@ dependencies = [
 
 [[package]]
 name = "ct-curve-point"
-version = "0.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8dd1ca20723766f68028c6120aef4571f9de4ecef52aba1649bec7ef4879dda5"
+version = "0.0.2"
 dependencies = [
  "ct-scalar",
- "ct-uint 0.0.2",
+ "ct-uint",
  "subtle",
 ]
 
@@ -53,7 +51,7 @@ dependencies = [
  "ct-curve-point",
  "ct-fp",
  "ct-scalar",
- "ct-uint 0.0.3",
+ "ct-uint",
  "hex",
  "sha2",
  "signature",
@@ -63,31 +61,18 @@ dependencies = [
 
 [[package]]
 name = "ct-fp"
-version = "0.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dea51d9f030084d3b86beebdd6e541260dde8081fc50e4fe59e8f5f3739e91d9"
+version = "0.0.2"
 dependencies = [
- "ct-uint 0.0.2",
+ "ct-uint",
  "subtle",
 ]
 
 [[package]]
 name = "ct-scalar"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "46568f96c0498afcbfe80dbba597ed5974f9f05361f81b1d1c2830ac210a3f7b"
+version = "0.0.2"
 dependencies = [
  "ct-fp",
- "ct-uint 0.0.2",
- "subtle",
-]
-
-[[package]]
-name = "ct-uint"
-version = "0.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c87a510760352044c3604f0a46e32f4a87f510b210050ec4cd3184886721d5f1"
-dependencies = [
+ "ct-uint",
  "subtle",
 ]
 

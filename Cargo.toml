@@ -10,9 +10,9 @@ keywords = ["ed25519", "signature", "constant-time", "cryptography"]
 categories = ["cryptography"]
 
 [dependencies]
-ct-curve-point = { version = "0.0.1", default-features = false }
-ct-fp = { version = "0.0.1", default-features = false }
-ct-scalar = { version = "0.1.0", default-features = false }
+ct-curve-point = { version = "0.0.2", default-features = false }
+ct-fp = { version = "0.0.2", default-features = false }
+ct-scalar = { version = "0.0.2", default-features = false }
 ct-uint = { version = "0.0.3", default-features = false }
 sha2 = { version = "0.11.1", default-features = false }
 signature = { version = "3.0.0", default-features = false }
@@ -28,3 +28,6 @@ hex = "0.4.3"
 
 [patch.crates-io]
 ct-uint = { path = "../ct-uint" }
+ct-fp = { path = "../ct-fp" }
+ct-scalar = { path = "../ct-scalar" }
+ct-curve-point = { path = "../ct-curve-point" }
