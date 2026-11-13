@@ -1,10 +1,10 @@
 [package]
 name = "ct-ed25519"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2024"
 description = "Constant-time Ed25519 signatures (RFC 8032)"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/YOURNAME/ct-ed25519"
+repository = "https://github.com/power-system/ct-ed25519"
 readme = "README.md"
 keywords = ["ed25519", "signature", "constant-time", "cryptography"]
 categories = ["cryptography"]
