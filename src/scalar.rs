@@ -11,7 +11,7 @@ const L: Uint<4> = Uint::from_limbs([
 ]);
 
 #[derive(Clone, Copy, Debug)]
-pub(crate) struct Ed25519Scalar(pub(crate) Uint<4>);
+pub struct Ed25519Scalar(pub(crate) Uint<4>);
 
 impl ConstantTimeEq for Ed25519Scalar {
     fn ct_eq(&self, other: &Self) -> Choice {
@@ -26,7 +26,8 @@ impl ConditionallySelectable for Ed25519Scalar {
 }
 
 impl Ed25519Scalar {
-    pub(crate) fn from_canonical_bytes(b: &[u8; 32]) -> Option<Self> {
+    /// Decode a canonical little-endian scalar, rejecting values `>= L`.
+    pub fn from_canonical_bytes(b: &[u8; 32]) -> Option<Self> {
         let v = Uint::<4>::from_le_bytes(b)?;
         let (_, underflow) = v.checked_sub(&L);
         if bool::from(underflow) {
@@ -36,7 +37,8 @@ impl Ed25519Scalar {
         }
     }
 
-    pub(crate) fn to_bytes(self) -> [u8; 32] {
+    /// Encode the scalar as 32 little-endian bytes.
+    pub fn to_bytes(self) -> [u8; 32] {
         let mut out = [0u8; 32];
         self.0.write_le_bytes(&mut out);
         out

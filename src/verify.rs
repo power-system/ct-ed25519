@@ -42,5 +42,5 @@ impl Verifier<Signature> for VerifyingKey {
 
 fn point_from_affine(a: &Affine) -> crate::point::Point {
     // 把仿射 A 嵌入扩展坐标 (x:y:1:x*y)
-    crate::point::Point::from_affine(a.x, a.y)
+    crate::point::Point::from_affine(a)
 }

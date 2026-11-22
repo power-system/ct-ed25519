@@ -334,6 +334,29 @@ Malformed or tampered signatures return a `signature::Error` from `verify`.
 `Signature` can also be constructed from a 64-byte slice with
 `Signature::try_from(&bytes[..])`.
 
+### Low-level curve and scalar types
+
+The curve and scalar types are public so they can be used by related crates
+(for example, threshold-signature implementations):
+
+```rust
+use ct_ed25519::{Ed25519Affine, Ed25519Curve, Ed25519Point, Ed25519Scalar};
+use ct_ed25519::{PointEncoding, ProjectiveCurvePoint, ScalarField, ScalarMul};
+
+let basepoint: Ed25519Point = Ed25519Point::basepoint();
+let affine: Ed25519Affine = basepoint.to_affine();
+
+let scalar = Ed25519Scalar::from_bytes_mod_order(&[7u8; 32]);
+let product = Ed25519Curve::mul_base(&scalar);
+
+let mut encoded = [0u8; 32];
+product.to_affine().to_compressed(&mut encoded);
+```
+
+The traits needed to operate on these types (`PointEncoding`,
+`ProjectiveCurvePoint`, `ScalarMul`, `ScalarField`, and the other traits from
+the `ct-*` crates) are re-exported from `ct_ed25519`.
+
 ## Feature flags
 
 | Feature | Default | Description |

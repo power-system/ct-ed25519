@@ -1,6 +1,6 @@
 [package]
 name = "ct-ed25519"
-version = "0.0.2"
+version = "0.0.3"
 edition = "2024"
 description = "Constant-time Ed25519 signatures (RFC 8032)"
 license = "MIT OR Apache-2.0"

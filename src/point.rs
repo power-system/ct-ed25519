@@ -10,7 +10,7 @@ use crate::scalar::Ed25519Scalar;
 // ===== Projective point (extended coordinates X:Y:Z:T) =====
 
 #[derive(Clone, Copy, Debug)]
-pub(crate) struct Ed25519Point {
+pub struct Ed25519Point {
     x: Ed25519Fp,
     y: Ed25519Fp,
     z: Ed25519Fp,
@@ -38,7 +38,8 @@ impl ConditionallySelectable for Ed25519Point {
 }
 
 impl Ed25519Point {
-    fn identity() -> Self {
+    /// The neutral element of the group, `(0 : 1 : 1 : 0)`.
+    pub fn identity() -> Self {
         Self {
             x: Ed25519Fp::ZERO,
             y: Ed25519Fp::ONE,
@@ -47,7 +48,8 @@ impl Ed25519Point {
         }
     }
 
-    fn basepoint() -> Self {
+    /// The Ed25519 base point (generator).
+    pub fn basepoint() -> Self {
         let x = basepoint_x();
         let y = basepoint_y();
         Self {
@@ -58,7 +60,12 @@ impl Ed25519Point {
         }
     }
 
-    pub(crate) fn from_affine(x: Ed25519Fp, y: Ed25519Fp) -> Self {
+    /// Embed an affine point as a projective point.
+    pub fn from_affine(affine: &Ed25519Affine) -> Self {
+        Self::from_affine_coords(affine.x, affine.y)
+    }
+
+    pub(crate) fn from_affine_coords(x: Ed25519Fp, y: Ed25519Fp) -> Self {
         Self {
             x,
             y,
@@ -120,7 +127,7 @@ impl CurvePoint for Ed25519Point {
 // ===== Affine point =====
 
 #[derive(Clone, Copy, Debug)]
-pub(crate) struct Ed25519Affine {
+pub struct Ed25519Affine {
     pub(crate) x: Ed25519Fp,
     pub(crate) y: Ed25519Fp,
     x_bytes: [u8; 32],
@@ -182,7 +189,7 @@ impl CurvePoint for Ed25519Affine {
 
 // ===== Curve model =====
 
-pub(crate) struct Ed25519Curve;
+pub struct Ed25519Curve;
 
 impl CurveModel<4> for Ed25519Curve {
     type Scalar = Ed25519Scalar;
